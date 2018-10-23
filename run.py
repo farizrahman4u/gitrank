@@ -38,10 +38,13 @@ if not output_file.replace(' ', ''):
     output_file = 'output.csv'
 
 def _username_from_row(row):
-    x = row.split('github.com/')[1]
-    x = x.split(',')[0]
-    x = x.split('/')[0]
-    return x
+    try:
+        x = row.split('github.com/')[1]
+        x = x.split(',')[0]
+        x = x.split('/')[0]
+        return x
+    except:
+        return ''
 
 
 with open(input_file, 'r') as fin:
@@ -69,4 +72,4 @@ with open(input_file, 'r') as fin:
                 print('Failed: ' + username)
                 print(e)
                 contribs = 'N/A'
-            fout.write(line0[:-1] + ',' + contribs + '\n')
+            fout.write(line[:-1] + ',' + contribs + '\n')
